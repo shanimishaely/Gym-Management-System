@@ -42,7 +42,7 @@ namespace GymAPI.Service
         }
         public async Task<Lessons> UpdateLessonsAsync(int id,Lessons lesson)
         {
-            Lessons newl =await _lessonRepository.UpdateLessonsAsync(id);
+            Lessons newl =await _lessonRepository.GetLessonsByIdAsync(id);
             if (newl != null)
             {
                 newl.LessonName = lesson.LessonName;
@@ -50,7 +50,6 @@ namespace GymAPI.Service
                 newl.SumUsers = lesson.SumUsers;
                 newl.MaxUsers = lesson.MaxUsers;
                 newl.DTime = lesson.DTime;
-                newl.Id = lesson.Id;
                await _lessonRepository.SaveAsync();
             }
           

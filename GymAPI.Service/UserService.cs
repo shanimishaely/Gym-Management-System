@@ -21,7 +21,7 @@ namespace GymAPI.Service
         public async Task<List<Users>> GetUsersAsync()
         {
             return await _userService.GetUsersAsync();
-            // חישובים
+          
         }
 
         public async Task<Users> GetByIdAsync(int id)
@@ -44,11 +44,10 @@ namespace GymAPI.Service
         }
         public async Task<Users> UpdateUsersAsync(int id,Users user)
         {
-            Users newu =await _userService.UpdateUsersAsync(id);
+            Users newu =await _userService.GetByIdAsync(id);
             if (newu != null)
             {
 
-                newu.Id = user.Id;
                 newu.Name = user.Name;
                 newu.Email = user.Email;
                 newu.Password = user.Password;

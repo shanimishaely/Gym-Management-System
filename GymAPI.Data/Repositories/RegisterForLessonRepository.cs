@@ -24,13 +24,13 @@ namespace GymAPI.Data.Repositories
 
         public async Task<RegisterForLesson> GetByIdAsync(int id)
         {
-            return await _context.registerForUsers.FirstAsync(r => r.Id == id);
+            return await _context.registerForUsers.FirstOrDefaultAsync(r => r.Id == id);
         }
         
 
             public async Task<RegisterForLesson> GetRegisterForLessonByDTimeAsync(DateTime dtime)
         {
-            return await _context.registerForUsers.FirstAsync(r => r.DTimeRegister == dtime);
+            return await _context.registerForUsers.SingleOrDefaultAsync(r => r.DTimeRegister == dtime);
         }
         public RegisterForLesson AddRegister(RegisterForLesson registerForLesson)
         {
@@ -41,14 +41,14 @@ namespace GymAPI.Data.Repositories
         public async Task<RegisterForLesson> UpdateRegisterAsync( int id)
         {
 
-            return await _context.registerForUsers.FirstAsync(x => x.Id == id);
+            return await _context.registerForUsers.FirstOrDefaultAsync(x => x.Id == id);
             
              
 
         }
         public async Task DeleteRegisterAsync(int id)
         {
-            var us = await _context.registerForUsers.FirstAsync(x => x.Id == id);
+            var us = await _context.registerForUsers.FirstOrDefaultAsync(x => x.Id == id);
              _context.registerForUsers.Remove(us);
         }
         public async Task SaveAsync()

@@ -29,7 +29,7 @@ namespace GymAPI.Data.Repositories
         
         public async Task<Users> GetByEmailAsync(string email)
         {
-            return await _context.users.FirstAsync(l => l.Email == email);
+            return await _context.users.SingleOrDefaultAsync(l => l.Email == email);
         }
 
         public Users AddUser(Users user)

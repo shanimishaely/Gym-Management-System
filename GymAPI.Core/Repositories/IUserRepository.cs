@@ -14,7 +14,7 @@ namespace GymAPI.Core.Repositories
         public Task<Users> GetByIdAsync(int id);
 
         
-        public Task<Users> GetByEmailAsync(string email);
+        public Task<Users?> GetByEmailAsync(string email);
 
 
         public Users AddUser(Users user);

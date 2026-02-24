@@ -21,7 +21,7 @@ namespace GymAPI.Service
         public async Task<List<RegisterForLesson>> GetRegisterForLessonAsync()
         {
             return await _registerForLesson.GetRegisterForLessonAsync();
-            // |חישובים
+       
         }
         
         public async Task<RegisterForLesson> GetByIdAsync(int id)
@@ -36,7 +36,8 @@ namespace GymAPI.Service
 
         public async Task<RegisterForLesson> AddRegisterAsync(RegisterForLesson rg)
         {
-          
+            if (rg.Lesson.SumUsers < rg.Lesson.MaxUsers)
+            { rg.Lesson.SumUsers += 1; }
           var t= _registerForLesson.AddRegister(rg);
            await _registerForLesson.SaveAsync();
          return t;
@@ -47,16 +48,18 @@ namespace GymAPI.Service
             var us = await _registerForLesson.GetByIdAsync(rg.Id);
             if (us != null)
             {
-                us.Id = rg.Id;
-                us.LessonId = rg.LessonId;
-                us.UserId = rg.UserId;
-               await _registerForLesson.SaveAsync();
+                us.User= rg.User;
+                us.Lesson = rg.Lesson;
+                us.DTimeRegister = rg.DTimeRegister;
+                us.User.Phone=rg.User.Phone;
+                await _registerForLesson.SaveAsync();
             }
 
             return rg;
         }
         public async Task DeleteRegisterAsync(int id)
         {
+
            await _registerForLesson.DeleteRegisterAsync(id);
            await _registerForLesson.SaveAsync();
         }

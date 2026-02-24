@@ -9,17 +9,15 @@ namespace GymAPI.Core.Repositories
 {
     public interface IRegisterForLessonRepository
     {
-        public Task<List<RegisterForLesson>> GetRegisterForLessonAsync();
+        public Task<List<RegisterForLesson?>> GetRegisterForLessonAsync();
 
-        public Task<RegisterForLesson> GetByIdAsync(int id);
-
-        
+        public Task<RegisterForLesson?> GetByIdAsync(int id);
          
-         public Task<RegisterForLesson> GetRegisterForLessonByDTimeAsync(DateTime dtime);
+         public Task<RegisterForLesson?> GetRegisterForLessonByDTimeAsync(DateTime dtime);
 
         public RegisterForLesson AddRegister(RegisterForLesson reg);
 
-        public Task<RegisterForLesson> UpdateRegisterAsync(int id);
+        public Task<RegisterForLesson?> UpdateRegisterAsync(int id);
 
         public Task DeleteRegisterAsync(int id);
         public Task SaveAsync();
