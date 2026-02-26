@@ -1,6 +1,7 @@
 ﻿using GymAPI.Core.Entities;
 using GymAPI.Core.Services;
 using GymAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -22,7 +23,7 @@ namespace Student.Controllers
             _configuration = configuration;
             _userService = userService;
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] UserPostModelToRegister loginModel)
         {
