@@ -12,14 +12,14 @@ using GymAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- 1. δβγψϊ τεμιρϊ CORS (δερτδ ηγωδ!) ---
+// --- 1. Γ€Γ’Γ£ΓΈΓΊ Γ΄Γ₯Γ¬Γ©Γ±ΓΊ CORS (Γ€Γ₯Γ±Γ΄Γ€ Γ§Γ£ΓΉΓ€!) ---
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLovable", policy =>
     {
-        policy.AllowAnyOrigin() // ξΰτωψ μλμ ΰϊψ (λεμμ Lovable) μβωϊ
-              .AllowAnyMethod() // ξΰτωψ GET, POST, PUT, DELETE ελε'
-              .AllowAnyHeader(); // ξΰτωψ μωμεη θεχπιν α-Header
+        policy.AllowAnyOrigin() // Γ®Γ Γ΄ΓΉΓΈ Γ¬Γ«Γ¬ Γ ΓΊΓΈ (Γ«Γ₯Γ¬Γ¬ Lovable) Γ¬Γ’ΓΉΓΊ
+              .AllowAnyMethod() // Γ®Γ Γ΄ΓΉΓΈ GET, POST, PUT, DELETE Γ₯Γ«Γ₯'
+              .AllowAnyHeader(); // Γ®Γ Γ΄ΓΉΓΈ Γ¬ΓΉΓ¬Γ₯Γ§ Γ¨Γ₯Γ·Γ°Γ©Γ­ Γ‘-Header
     });
 });
 
@@ -84,7 +84,7 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-// --- 2. ργψ δ-Middleware (ηωεα ξΰεγ!) ---
+// --- 2. Γ±Γ£ΓΈ Γ€-Middleware (Γ§ΓΉΓ₯Γ‘ Γ®Γ Γ₯Γ£!) ---
 
 if (app.Environment.IsDevelopment())
 {
@@ -92,9 +92,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-// δτςμϊ δ-CORS - ηιια μαεΰ μτπι Authentication ε-Authorization!
+// Γ€Γ΄Γ²Γ¬ΓΊ Γ€-CORS - Γ§Γ©Γ©Γ‘ Γ¬Γ‘Γ₯Γ  Γ¬Γ΄Γ°Γ© Authentication Γ₯-Authorization!
 app.UseCors("AllowLovable");
 
 app.UseAuthentication();
